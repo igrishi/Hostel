@@ -65,7 +65,9 @@ public class BlogFragment extends Fragment {
                     //now over here we are only looking for new document added changes
                     //we are not looking for modified and deleted changes
                     if(doc.getType()== DocumentChange.Type.ADDED){
+                        String blogpostid=doc.getDocument().getId();
                         BlogPost blogPost=doc.getDocument().toObject(BlogPost.class);
+                        blogPost.postid=blogpostid;
                         list.add(blogPost);
                         adapter.notifyDataSetChanged();
                     }

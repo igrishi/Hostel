@@ -4,11 +4,12 @@ package com.rishi.hostel;
 import java.util.Date;
 
 public class BlogPost {
-
     //Modal class for blog post
 
     String description, imageurl, user_id;
     Date time;
+
+    public String postid;
 
     public Date getTime() {
         return time;

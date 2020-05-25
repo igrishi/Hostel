@@ -17,10 +17,21 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
+
+import javax.annotation.Nullable;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -28,6 +39,7 @@ public class BlogAdapter extends RecyclerView.Adapter<BlogAdapter.ViewHolder> {
     private List<BlogPost> blog_list;
     private Context context;
     private String TAG="BlogAdapter";
+    private FirebaseAuth auth;
 
     //<BlogAdapter.ViewHolder> means that View holder is a inner class within the class BlogAdapter
     //because its written in the arrow braces therefore first create the inner class view holder and extend
@@ -43,11 +55,14 @@ public class BlogAdapter extends RecyclerView.Adapter<BlogAdapter.ViewHolder> {
         View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.blog_layout,parent,false);
         //Returns the context the view is running in, through which it can access the current theme, resources, etc
         context=parent.getContext();
+        auth=FirebaseAuth.getInstance();
         return new ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+        final String user_token= Objects.requireNonNull(auth.getCurrentUser()).getUid();
+        final String blogpostid=blog_list.get(position).postid;
         String description=blog_list.get(position).getDescription();
         String imageurl=blog_list.get(position).getImageurl();
         userdata(position,holder);
@@ -57,6 +72,45 @@ public class BlogAdapter extends RecyclerView.Adapter<BlogAdapter.ViewHolder> {
         String datestring= (String) DateFormat.format("dd MMM yyy",milliseconds);
         Log.d(TAG, "onBindViewHolder: "+datestring);
         holder.time.setText(datestring);
+
+        //like feature
+        initialdata(blogpostid,user_token,holder);
+        holder.likes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                likebutton(blogpostid,user_token,holder);
+            }
+        });
+    }
+
+    private void initialdata(String blogpostid, String user_token, final ViewHolder holder) {
+        FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
+        CollectionReference collectionReference=rootRef
+                .collection("posts")
+                .document(blogpostid)
+                .collection("Likes");
+
+        collectionReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                assert queryDocumentSnapshots != null;
+                long number=queryDocumentSnapshots.size();
+                holder.numberlikes.setText(number+" Likes");
+            }
+        });
+
+        DocumentReference docIdRef = collectionReference.document(user_token);
+        //checking real time likes
+        docIdRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                Log.d(TAG, "onEvent: "+"like event triggered");
+                if(documentSnapshot.exists()){
+                    holder.likes.setImageResource(R.drawable.liked);
+                }
+
+            }
+        });
     }
 
     private void userdata(int position, final ViewHolder holder) {
@@ -96,6 +150,8 @@ public class BlogAdapter extends RecyclerView.Adapter<BlogAdapter.ViewHolder> {
         private CircleImageView userimage;
         private TextView username;
         private TextView time;
+        private ImageView likes;
+        private TextView numberlikes;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             description=itemView.findViewById(R.id.post_des);
@@ -103,7 +159,66 @@ public class BlogAdapter extends RecyclerView.Adapter<BlogAdapter.ViewHolder> {
             userimage=itemView.findViewById(R.id.post_user_image);
             username=itemView.findViewById(R.id.post_username);
             time=itemView.findViewById(R.id.post_date);
+            likes=itemView.findViewById(R.id.like);
+            numberlikes=itemView.findViewById(R.id.numberlikes);
 
         }
+    }
+
+    private void likebutton(String blogpostid, String user_token, final ViewHolder holder){
+        final HashMap<String,Object> likes=new HashMap<>();
+        likes.put("time", FieldValue.serverTimestamp());
+
+         FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
+         final CollectionReference collectionReference=rootRef
+                .collection("posts")
+                .document(blogpostid)
+                .collection("Likes");
+
+
+        final DocumentReference docIdRef = collectionReference.document(user_token);
+
+        //my early mistake is that here we can't have a real time checking because are
+        //deleting document over here so in case if we delete a document again the
+        //listener gets triggered and create that document and again deletes it as it exist also
+        //hence it becomes an infinite loop
+        //therefore we user get() method when deleting a document
+
+        docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot doc=task.getResult();
+                    if(doc.exists()){
+                        Log.d(TAG, "Document exists!");
+                        docIdRef.delete();
+                        holder.likes.setImageResource(R.drawable.unliked);
+
+                        collectionReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
+                            @Override
+                            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                                assert queryDocumentSnapshots != null;
+                                long number=queryDocumentSnapshots.size();
+                                holder.numberlikes.setText(number+" Likes");
+                            }
+                        });
+                    }
+                    else{
+                        Log.d(TAG, "Document does not exist!");
+                        docIdRef.set(likes);
+                        holder.likes.setImageResource(R.drawable.liked);
+
+                        collectionReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
+                            @Override
+                            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                                assert queryDocumentSnapshots != null;
+                                long number=queryDocumentSnapshots.size();
+                                holder.numberlikes.setText(number+" Likes");
+                            }
+                        });
+                    }
+                }
+            }
+        });
     }
 }
