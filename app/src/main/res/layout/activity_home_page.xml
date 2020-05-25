@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    android:id="@+id/drawer"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_gravity="start"
+    android:layout_height="match_parent"
+    tools:context=".HomePage"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:id="@+id/drawer_main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:title="Blogs"
+            app:titleTextColor="#1C4699"
+            app:navigationIcon="@drawable/navicon"
+            android:background="#fff"/>
+        <FrameLayout
+            android:id="@+id/normal_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/bottom_nav_bar"
+            android:layout_below="@id/toolbar"/>
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_nav_bar"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:background="#1C4699"
+            app:menu="@menu/bottom_nav_menu"
+            app:itemIconSize="28dp"
+            app:itemIconTint="@drawable/nav_button_selector"
+            app:labelVisibilityMode="unlabeled"
+            android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/nav_menu"
+        android:layout_gravity="start"/>
+</androidx.drawerlayout.widget.DrawerLayout>

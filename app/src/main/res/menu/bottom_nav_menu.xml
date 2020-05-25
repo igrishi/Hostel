@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/blog"
+        android:icon="@drawable/blogs"
+        android:title="Blogs"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/medical_help"
+        android:icon="@drawable/medical"
+        android:title="Medical help"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/notice"
+        android:icon="@drawable/notice"
+        android:title="Notice"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/find_people"
+        android:icon="@drawable/person"
+        android:title="Find People"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/seek_help"
+        android:icon="@drawable/help"
+        android:title="Help"
+        app:showAsAction="ifRoom" />
+</menu>

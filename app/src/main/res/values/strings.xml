@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Hostel</string>
+    <string name="login">Login</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="email_id">Email ID</string>
+    <string name="password">Password</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="blood_group">Blood group</string>
+    <string name="branch">Branch</string>
+    <string name="room_no">Room no</string>
+    <string name="roll_no">Roll no</string>
+    <string name="name">Name</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="username">Username</string>
+</resources>
