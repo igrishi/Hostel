@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#E6E2E2"
+    android:paddingBottom="10dp">
+
+    <TextView
+        android:id="@+id/c_r_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/c_r_comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/c_r_username"
+        android:layout_marginTop="7dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:textColor="#292828"
+        android:textSize="15sp"
+        android:text="hyy!! nice pic you are good looking"/>
+</RelativeLayout>

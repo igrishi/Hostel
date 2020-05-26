@@ -95,6 +95,13 @@ public class HomePage extends AppCompatActivity {
                 if(task.isSuccessful()){
                     String name= Objects.requireNonNull(task.getResult()).getString("name");
                     String image_url=task.getResult().getString("image url");
+                    String bloodgrp=task.getResult().getString("bloodgrp");
+                    String branch=task.getResult().getString("branch");
+                    String rollno=task.getResult().getString("rollno");
+                    String roomno=task.getResult().getString("roomno");
+
+                    userdatasetup(name,image_url,bloodgrp,branch,rollno,roomno);
+
                     Log.d(TAG, "onComplete: ");
                     username.setText(name);
                     Glide.with(HomePage.this).load(image_url).into(imageview);
@@ -110,6 +117,15 @@ public class HomePage extends AppCompatActivity {
                 Log.d(TAG, "onFailure: "+e);
             }
         });
+    }
+
+    private void userdatasetup(String name, String image_url, String bloodgrp, String branch, String rollno, String roomno) {
+        User.setName(name);
+        User.setImage_url(image_url);
+        User.setBloodgrp(bloodgrp);
+        User.setBranch(branch);
+        User.setRollno(rollno);
+        User.setRoomno(roomno);
     }
 
 

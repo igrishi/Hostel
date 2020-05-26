@@ -19,6 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.rishi.hostel.Adapters.BlogAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +44,7 @@ public class BlogFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        adapter=new BlogAdapter(list);
+        adapter=new BlogAdapter(list,getActivity());
         RecyclerView.LayoutManager manager=new LinearLayoutManager(getActivity());
         recyclerview.setLayoutManager(manager);
         recyclerview.setAdapter(adapter);
@@ -77,4 +78,5 @@ public class BlogFragment extends Fragment {
         //inflating rhe view
         return v;
     }
+
 }
