@@ -20,6 +20,7 @@
         android:id="@+id/toolbar_pb"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        app:titleTextAppearance="@style/style_toolbar"
         android:background="#fff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

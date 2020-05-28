@@ -16,7 +16,8 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="55dp"
+            app:titleTextAppearance="@style/style_toolbar"
             app:title="Blogs"
             app:titleTextColor="#1C4699"
             app:navigationIcon="@drawable/navicon"
@@ -30,7 +31,7 @@
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_nav_bar"
             android:layout_width="match_parent"
-            android:layout_height="65dp"
+            android:layout_height="60dp"
             android:background="#1C4699"
             app:menu="@menu/bottom_nav_menu"
             app:itemIconSize="28dp"

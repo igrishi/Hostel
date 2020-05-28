@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,6 +34,7 @@ import com.rishi.hostel.Adapters.CommentsAdapter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 import javax.annotation.Nullable;
 
@@ -49,6 +51,7 @@ public class CommentActivity extends AppCompatActivity {
     private ImageView send;
     private List<CommentData> data;
     private CommentsAdapter commentsAdapter;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +59,7 @@ public class CommentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_comment);
         myuserimageurl = User.getImage_url();
         data = new ArrayList<>();
-        Log.d(TAG, "onCreate: " + myuserimageurl);
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         Postuserid = intent.getStringExtra("userid");
         Postdesc = intent.getStringExtra("description");
         Postid = intent.getStringExtra("postid");
@@ -65,6 +67,7 @@ public class CommentActivity extends AppCompatActivity {
         name = findViewById(R.id.c_username);
         comment = findViewById(R.id.comment_edit_text);
         desciption = findViewById(R.id.c_description);
+        toolbar=findViewById(R.id.toolbar_comment);
         myimage = findViewById(R.id.myimage);
         commentlist = findViewById(R.id.comments_recycler);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
@@ -88,6 +91,18 @@ public class CommentActivity extends AppCompatActivity {
                 }
             }
         });
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth auth=FirebaseAuth.getInstance();
+                String current_user=auth.getCurrentUser().getUid();
+                Intent intent=new Intent(CommentActivity.this,HomePage.class);
+                intent.putExtra("user_uid",current_user);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     private void uploadcomment(String comment_string) {
@@ -106,7 +121,7 @@ public class CommentActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Toast.makeText(CommentActivity.this, "comment uploaded", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(CommentActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CommentActivity.this, Objects.requireNonNull(task.getException()).toString(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -126,15 +141,16 @@ public class CommentActivity extends AppCompatActivity {
         first.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                assert queryDocumentSnapshots != null;
                 Log.d(TAG, "onEvent: " +"triggered");
-                for (DocumentChange doc : queryDocumentSnapshots.getDocumentChanges()) {
-                    Log.d(TAG, "onEvent: "+"document change");
-                    if (doc.getType() == DocumentChange.Type.ADDED) {
-                        CommentData comment=doc.getDocument().toObject(CommentData.class);
-                        Log.d(TAG, "onEvent: "+"document added");
-                        data.add(comment);
-                        commentsAdapter.notifyDataSetChanged();
+                if (queryDocumentSnapshots != null) {
+                    for (DocumentChange doc : queryDocumentSnapshots.getDocumentChanges()) {
+                        Log.d(TAG, "onEvent: "+"document change");
+                        if (doc.getType() == DocumentChange.Type.ADDED) {
+                            CommentData comment=doc.getDocument().toObject(CommentData.class);
+                            Log.d(TAG, "onEvent: "+"document added");
+                            data.add(comment);
+                            commentsAdapter.notifyDataSetChanged();
+                        }
                     }
                 }
             }

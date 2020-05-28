@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
+    android:background="#F8F2F2"
     tools:context=".OnBoarding.UserDetail">
 
     <RelativeLayout
@@ -40,8 +40,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/user_icon"
             android:layout_centerHorizontal="true"
+            android:backgroundTint="@color/colorAccent"
             android:layout_marginTop="27dp"
-            android:background="@drawable/edittext_background"
             android:hint="@string/name"
             android:imeOptions="actionNext"
             android:inputType="text"
@@ -56,8 +56,8 @@
             android:layout_below="@id/user_name"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="9dp"
-            android:background="@drawable/edittext_background"
             android:hint="@string/roll_no"
+            android:backgroundTint="@color/colorAccent"
             android:imeOptions="actionNext"
             android:inputType="number"
             android:padding="11dp"
@@ -70,47 +70,77 @@
             android:layout_below="@id/user_rollno"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="9dp"
-            android:background="@drawable/edittext_background"
             android:hint="@string/room_no"
-            android:imeOptions="actionNext"
-            android:inputType="number"
-            android:padding="11dp"
-            android:textColor="#000000" />
-
-        <EditText
-            android:id="@+id/user_branch"
-            android:layout_width="320dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/user_roomno"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="9dp"
-            android:background="@drawable/edittext_background"
-            android:hint="@string/branch"
-            android:imeOptions="actionNext"
-            android:inputType="text"
-            android:padding="11dp"
-            android:textColor="#000000" />
-
-        <EditText
-            android:id="@+id/user_bloodgrp"
-            android:layout_width="320dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/user_branch"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="9dp"
-            android:background="@drawable/edittext_background"
-            android:hint="@string/blood_group"
             android:imeOptions="actionDone"
-            android:inputType="text"
-            android:maxLength="4"
+            android:inputType="number"
+            android:backgroundTint="@color/colorAccent"
             android:padding="11dp"
             android:textColor="#000000" />
+
+        <LinearLayout
+            android:id="@+id/linear_layout4"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/user_roomno">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginStart="7dp"
+                android:textColor="@color/colorAccent"
+                android:text="Branch" />
+        </LinearLayout>
+
+        <Spinner
+            android:id="@+id/spinner"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:layout_width="320dp"
+            android:layout_height="45dp"
+            android:layout_below="@id/linear_layout4"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="9dp"
+            android:entries="@array/branches"
+            android:padding="10dp" />
+
+        <LinearLayout
+            android:id="@+id/linear_layout5"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/spinner">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginStart="7dp"
+                android:textColor="@color/colorAccent"
+                android:text="Blood Group" />
+        </LinearLayout>
+
+        <Spinner
+            android:id="@+id/spinner2"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:layout_width="320dp"
+            android:layout_height="45dp"
+            android:layout_below="@id/linear_layout5"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="9dp"
+            android:entries="@array/bloodgrp"
+            android:padding="10dp" />
+
 
         <Button
             android:id="@+id/user_button"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/user_bloodgrp"
+            android:layout_below="@id/spinner2"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="65dp"
             android:background="@drawable/onboarding_btn"

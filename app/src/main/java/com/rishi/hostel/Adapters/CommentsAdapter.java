@@ -19,7 +19,13 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
     private String TAG="CommentAdapter";
 
     public CommentsAdapter(List<CommentData> data) {
+        //here data is a reference variable pointing towards the location
+        //pointed by data in argument
         this.data=data;
+
+        //in order to create a new list with same elements of data we use
+        //List<COmmentData> list=new ArrayList<>(data);
+        //this create a new list and copy the elements of data in new list
     }
 
     @NonNull

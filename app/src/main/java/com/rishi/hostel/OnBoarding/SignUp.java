@@ -18,6 +18,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.model.Document;
 import com.rishi.hostel.HomePage;
 import com.rishi.hostel.R;
 
@@ -26,6 +30,7 @@ public class SignUp extends AppCompatActivity {
     private TextView email, password;
     private String TAG = "SignUp";
     private ProgressBar signupprogress;
+    private TextView login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +39,7 @@ public class SignUp extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         email = findViewById(R.id.su_email);
         password = findViewById(R.id.su_pass);
+        login=findViewById(R.id.go_to_login);
         signupprogress=findViewById(R.id.signup_progress);
         Button button = findViewById(R.id.su_button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +47,15 @@ public class SignUp extends AppCompatActivity {
             public void onClick(View v) {
                 check_email(email.getText().toString(),password.getText().toString());
 
+            }
+        });
+
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(SignUp.this,Login.class);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -92,10 +107,44 @@ public class SignUp extends AppCompatActivity {
         if (currentUser != null) {
             //will update UI over here for current user
             //if user had already logged in
-            Intent intent=new Intent(SignUp.this,HomePage.class);
-            intent.putExtra("user_uid",auth.getUid());
-            startActivity(intent);
-            finish();
+            signupprogress.setVisibility(View.VISIBLE);
+            final String userid=currentUser.getUid();
+
+            FirebaseFirestore firestore=FirebaseFirestore.getInstance();
+
+            //so here we set up a document reference with userid and at that document reference we try to retrieve
+            //document from there and inside task successful we get a snapshot of document
+            //further we can check if document at that reference exist ot not using doc.exist() method
+            firestore.collection("Users").document(userid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if(task.isSuccessful()){
+                        DocumentSnapshot doc=task.getResult();
+                        if(doc.exists()){
+                            Log.d(TAG, "onComplete: "+ "user data already uploaded");
+                            Intent intent=new Intent(SignUp.this,HomePage.class);
+                            intent.putExtra("user_uid",auth.getUid());
+                            signupprogress.setVisibility(View.INVISIBLE);
+                            startActivity(intent);
+                            finish();
+                        }else{
+                            Log.d(TAG, "onComplete: "+ "user data not uploaded");
+                            Intent intent = new Intent(SignUp.this, UserDetail.class);
+                            intent.putExtra("token", auth.getUid());
+                            startActivity(intent);
+                            signupprogress.setVisibility(View.INVISIBLE);
+                            finish();
+                        }
+                    }else{
+                        Toast.makeText(SignUp.this, "Task failed", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(SignUp.this, e.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 }

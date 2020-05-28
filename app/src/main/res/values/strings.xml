@@ -14,4 +14,25 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="username">Username</string>
+
+    <string-array name="branches">
+        <item>CSE</item>
+        <item>Mechanical</item>
+        <item>ECE</item>
+        <item>Electrical</item>
+        <item>Imsc</item>
+        <item>Civil</item>
+        <item>Architecture</item>
+    </string-array>
+
+    <string-array name="bloodgrp">
+        <item>A+</item>
+        <item>A-</item>
+        <item>B+</item>
+        <item>B-</item>
+        <item>O+</item>
+        <item>O-</item>
+        <item>AB+</item>
+        <item>AB-</item>
+    </string-array>
 </resources>

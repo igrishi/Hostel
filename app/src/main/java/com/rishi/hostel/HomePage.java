@@ -21,8 +21,10 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.rishi.hostel.OnBoarding.Login;
 
 import java.util.Objects;
 
@@ -77,6 +79,31 @@ public class HomePage extends AppCompatActivity {
                 //returning true to show that the task is consumed and everything is ok
                 //if false then fragment may change but the selected item is not highlighted as for it task is
                 //not consumed
+                return true;
+            }
+        });
+        nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id=item.getItemId();
+
+                if(id==R.id.logout){
+                    FirebaseAuth auth=FirebaseAuth.getInstance();
+                    auth.signOut();
+                    Intent intent=new Intent(HomePage.this, Login.class);
+                    startActivity(intent);
+                    finish();
+                }
+                else if(id==R.id.complaint){
+                    Toast.makeText(HomePage.this, "edit account clicked", Toast.LENGTH_SHORT).show();
+                }
+                else if(id==R.id.leave_aplc){
+                    Toast.makeText(HomePage.this, "leave application", Toast.LENGTH_SHORT).show();
+                }else if(id==R.id.id_Card){
+                    Toast.makeText(HomePage.this, "ID card", Toast.LENGTH_SHORT).show();
+                }else if(id==R.id.numbers){
+                    Toast.makeText(HomePage.this, "important numbers", Toast.LENGTH_SHORT).show();
+                }
                 return true;
             }
         });

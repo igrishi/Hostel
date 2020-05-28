@@ -9,4 +9,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="style_toolbar">
+        <item name="android:fontFamily">@font/amita_bold</item>
+        <item name="android:textSize">18sp</item>
+    </style>
 </resources>

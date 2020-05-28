@@ -61,16 +61,17 @@ public class BlogFragment extends Fragment {
                /* document change:-- Returns the list of documents that changed since the last snapshot.
                 If it's the first snapshot all documents will be in the list as added changes.
                 Documents with changes only to their metadata will not be included*/
-                assert queryDocumentSnapshots != null;
-                for(DocumentChange doc:queryDocumentSnapshots.getDocumentChanges()){
-                    //now over here we are only looking for new document added changes
-                    //we are not looking for modified and deleted changes
-                    if(doc.getType()== DocumentChange.Type.ADDED){
-                        String blogpostid=doc.getDocument().getId();
-                        BlogPost blogPost=doc.getDocument().toObject(BlogPost.class);
-                        blogPost.postid=blogpostid;
-                        list.add(blogPost);
-                        adapter.notifyDataSetChanged();
+                if (queryDocumentSnapshots != null) {
+                    for(DocumentChange doc:queryDocumentSnapshots.getDocumentChanges()){
+                        //now over here we are only looking for new document added changes
+                        //we are not looking for modified and deleted changes
+                        if(doc.getType()== DocumentChange.Type.ADDED){
+                            String blogpostid=doc.getDocument().getId();
+                            BlogPost blogPost=doc.getDocument().toObject(BlogPost.class);
+                            blogPost.postid=blogpostid;
+                            list.add(blogPost);
+                            adapter.notifyDataSetChanged();
+                        }
                     }
                 }
             }
