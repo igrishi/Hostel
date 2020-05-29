@@ -69,10 +69,9 @@
             <ImageView
                 android:id="@+id/post_image"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="220dp"
                 android:layout_below="@id/thin_line"
                 android:layout_marginStart="7dp"
-                android:maxHeight="250dp"
                 android:layout_marginTop="7dp"
                 android:layout_marginEnd="7dp"
                 android:background="#C0BBBB"

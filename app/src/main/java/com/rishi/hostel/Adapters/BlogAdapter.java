@@ -21,7 +21,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -68,24 +67,34 @@ public class BlogAdapter extends RecyclerView.Adapter<BlogAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         final String user_token= Objects.requireNonNull(auth.getCurrentUser()).getUid();
+
         final String blogpostid=blog_list.get(position).postid;
         final String description=blog_list.get(position).getDescription();
         String imageurl=blog_list.get(position).getImageurl();
         userdata(position,holder);
         holder.description.setText(description);
-        Glide.with(activity).load(imageurl).into(holder.image);
+        if(imageurl==null){
+            //setting a view holder recyclable as false means the view holder  will not be
+            //used for any other row
+            holder.setIsRecyclable(false);
+            holder.image.getLayoutParams().height=0;
+        }else {
+            Glide.with(activity).load(imageurl).into(holder.image);
+        }
+
         long milliseconds=blog_list.get(position).getTime().getTime();
+
         String datestring= (String) DateFormat.format("dd MMM yyy",milliseconds);
         Log.d(TAG, "onBindViewHolder: "+datestring);
         holder.time.setText(datestring);
 
         //like feature
-        initialdata(blogpostid,user_token,holder);
+        like_update(blogpostid,user_token,holder);
 
         holder.likes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                likebutton(blogpostid,user_token,holder);
+                like_button(blogpostid,user_token,holder);
             }
         });
 
@@ -157,7 +166,7 @@ public class BlogAdapter extends RecyclerView.Adapter<BlogAdapter.ViewHolder> {
         }
     }
 
-    private void likebutton(String blogpostid, String user_token, final ViewHolder holder){
+    private void like_button(String blogpostid, String user_token, final ViewHolder holder){
         final HashMap<String,Object> likes=new HashMap<>();
         likes.put("time", FieldValue.serverTimestamp());
 
@@ -170,97 +179,16 @@ public class BlogAdapter extends RecyclerView.Adapter<BlogAdapter.ViewHolder> {
 
         final DocumentReference docIdRef = collectionReference.document(user_token);
 
-        //my early mistake is that here we can't have a real time checking because are
-        //deleting document over here so in case if we delete a document again the
-        //listener gets triggered and create that document and again deletes it as it exist also
-        //hence it becomes an infinite loop
-        //therefore we user get() method when deleting a document
-
         docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if(task.isSuccessful()){
                     DocumentSnapshot doc=task.getResult();
-                    if (doc != null) {
-                        /*if(doc.exists()){
-                            Log.d(TAG, "Document exists!");
-                            docIdRef.delete();
-                            holder.likes.setImageResource(R.drawable.unliked);
-
-                            collectionReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
-                                @Override
-                                public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                                    long number= 0;
-                                    if (queryDocumentSnapshots != null) {
-                                        number = queryDocumentSnapshots.size();
-                                        Log.d(TAG, "onEvent: "+"updating likes on click");
-                                    }
-                                    holder.numberlikes.setText(number+" Likes");
-                                }
-                            });
-                        }*/
-                        if(doc.exists()){
-                            Log.d(TAG, "Document exists!");
-                            docIdRef.delete();
-                            holder.likes.setImageResource(R.drawable.unliked);
-
-                            collectionReference.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                    if(task.isSuccessful()){
-                                        QuerySnapshot querySnapshot=task.getResult();
-                                        long number= 0;
-                                        if(querySnapshot!=null){
-                                            number=querySnapshot.size();
-                                            Log.d(TAG, "onComplete: upadting likes on click");
-                                            holder.numberlikes.setText(number+" Likes");
-                                        }
-                                    }else{
-                                        Log.d(TAG, "onComplete: "+ Objects.requireNonNull(task.getException()).toString());
-                                    }
-                                }
-                            });
-                        }
-
-                    /*    else{
-                            Log.d(TAG, "Document does not exist!");
+                    if(doc!=null){
+                        if(!doc.exists()){
                             docIdRef.set(likes);
-                            holder.likes.setImageResource(R.drawable.liked);
-
-                            collectionReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
-                                @Override
-                                public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                                    long number= 0;
-                                    if (queryDocumentSnapshots != null) {
-                                        Log.d(TAG, "onEvent: "+"updating likes on click");
-                                        number = queryDocumentSnapshots.size();
-                                    }
-                                    holder.numberlikes.setText(number+" Likes");
-                                }
-                            });
-                        }*/
-
-                        else{
-                            Log.d(TAG, "Document does not exist!");
-                            docIdRef.set(likes);
-                            holder.likes.setImageResource(R.drawable.liked);
-
-                            collectionReference.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                    if(task.isSuccessful()){
-                                        QuerySnapshot querySnapshot=task.getResult();
-                                        long number= 0;
-                                        if(querySnapshot!=null){
-                                            number=querySnapshot.size();
-                                            Log.d(TAG, "onComplete: upadting likes on click");
-                                            holder.numberlikes.setText(number+" Likes");
-                                        }
-                                    }else{
-                                        Log.d(TAG, "onComplete: "+ Objects.requireNonNull(task.getException()).toString());
-                                    }
-                                }
-                            });
+                        }else{
+                            docIdRef.delete();
                         }
                     }
                 }
@@ -268,68 +196,55 @@ public class BlogAdapter extends RecyclerView.Adapter<BlogAdapter.ViewHolder> {
         });
     }
 
-    private void initialdata(String blogpostid, String user_token, final ViewHolder holder) {
+    private void like_update(String blogpostid, String user_token, final ViewHolder holder) {
+
         FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
+
         CollectionReference collectionReference=rootRef
                 .collection("posts")
                 .document(blogpostid)
                 .collection("Likes");
 
 
-        DocumentReference docIdRef = collectionReference.document(user_token);
+        final DocumentReference docIdRef = collectionReference.document(user_token);
         //checking real time likes
-        docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        docIdRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if(task.isSuccessful()){
-                    DocumentSnapshot doc=task.getResult();
-                    if(doc!=null){
-                        if(doc.exists()){
-                            Log.d(TAG, "onComplete: "+ "initial heart set triggered"+holder.getAdapterPosition());
-                            holder.likes.setImageResource(R.drawable.liked);
-                        }else{
-                            holder.likes.setImageResource(R.drawable.unliked);
-                        }
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                if(documentSnapshot!=null){
+                    if(documentSnapshot.exists()){
+                        holder.likes.setImageResource(R.drawable.liked);
+                    }
+                    else{
+                        holder.likes.setImageResource(R.drawable.unliked);
                     }
                 }
             }
         });
+
+        //whenever onbind method is executed like count update is executed as well
+        //and hence we a get real time updated likes
+
+        like_count_update(blogpostid,holder);
+    }
+
+    private void  like_count_update(String blogpostid, final ViewHolder holder){
+        FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
+
+        CollectionReference collectionReference=rootRef
+                .collection("posts")
+                .document(blogpostid)
+                .collection("Likes");
 
         collectionReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                long number= 0;
                 if(queryDocumentSnapshots!=null){
-                    Log.d(TAG, "onComplete: "+ "updating likes");
-                    number = queryDocumentSnapshots.size();
-                }
-                holder.numberlikes.setText(number+" Likes");
-                if(e!=null){
-                    Log.d(TAG, "onEvent: "+e.toString());
+                    long number=0;
+                    number=queryDocumentSnapshots.size();
+                    holder.numberlikes.setText(number+" Likes");
                 }
             }
         });
-/*        collectionReference.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful()){
-                    QuerySnapshot list=task.getResult();
-                    long number= 0;
-                    if (list != null) {
-                        Log.d(TAG, "onComplete: "+ "updating likes");
-                        number = list.size();
-                    }
-                    holder.numberlikes.setText(number+" Likes");
-                }else{
-                    Toast.makeText(activity, task.getException().toString(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-
-            }
-        });*/
-
     }
 }
