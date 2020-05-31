@@ -1,10 +1,18 @@
-package com.rishi.hostel;
+package com.rishi.hostel.ModalClasses;
 
 public class CommentData {
-    private String username,comment;
+    private String username, comment, imageurl;
 
     public String getUsername() {
         return username;
+    }
+
+    public String getImageurl() {
+        return imageurl;
+    }
+
+    public void setImageurl(String imageurl) {
+        this.imageurl = imageurl;
     }
 
     public void setUsername(String username) {
@@ -22,7 +30,7 @@ public class CommentData {
     public CommentData() {
     }
 
-    public CommentData(String username, String comment) {
+    public CommentData(String username, String comment, String imageurl) {
         this.username = username;
         this.comment = comment;
     }

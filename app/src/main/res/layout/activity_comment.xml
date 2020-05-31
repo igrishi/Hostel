@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".CommentActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_comment"
         android:layout_width="match_parent"
-        app:title="Comments"
-        app:titleTextColor="#000000"
-        app:titleTextAppearance="@style/style_toolbar"
-        android:background="#DDD0D0"
+        android:layout_height="50dp"
         app:navigationIcon="@drawable/back"
-        android:layout_height="50dp"/>
+        app:title="Comments"
+        app:titleTextAppearance="@style/style_toolbar"
+        app:titleTextColor="#1C4699" />
+
+    <View
+        android:id="@+id/thin_line1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/toolbar_comment"
+        android:background="#AFA8A8" />
 
     <RelativeLayout
         android:id="@+id/relative1"
@@ -24,31 +30,35 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/comments_my_user"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="15dp"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:src="@drawable/maleuser"/>
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/maleuser" />
+
         <TextView
             android:id="@+id/c_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Username"
-            android:layout_toEndOf="@id/comments_my_user"
-            android:textColor="#000000"
-            android:textSize="16sp"
+            android:layout_marginStart="9dp"
             android:layout_marginTop="18dp"
-            android:layout_marginStart="9dp"/>
+            android:layout_toEndOf="@id/comments_my_user"
+            android:text="Username"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
         <TextView
             android:id="@+id/c_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/c_username"
-            android:layout_toEndOf="@id/comments_my_user"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_toEndOf="@id/comments_my_user"
             android:text="Hii!! there how are you guys!! this is my first post and i am very excited to continue on this platform"
-            android:layout_marginStart="10dp"/>
+            android:textColor="#252525" />
+
         <View
             android:id="@+id/thin_line"
             android:layout_width="match_parent"
@@ -62,48 +72,54 @@
         android:id="@+id/comments_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/relative1"
         android:layout_above="@id/linear_layout3"
-        android:layout_marginTop="5dp"/>
+        android:layout_below="@id/relative1"
+        android:layout_marginTop="5dp" />
 
     <LinearLayout
         android:id="@+id/linear_layout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="7dp"
+        android:layout_alignParentBottom="true"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
+        android:padding="7dp">
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/myimage"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_marginStart="4dp"
-            android:src="@drawable/maleuser"/>
+            android:src="@drawable/maleuser" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="10">
+
             <EditText
                 android:id="@+id/comment_edit_text"
                 android:layout_width="0dp"
-                android:layout_weight="9"
-                android:padding="8dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/white_background"
                 android:layout_marginStart="8dp"
-                android:inputType="textMultiLine"
                 android:layout_marginEnd="5dp"
+                android:layout_weight="9"
+                android:background="@drawable/white_background"
+                android:hint="Add a comment..."
                 android:imeOptions="actionSend"
-                android:hint="Add a comment..."/>
+                android:inputType="textMultiLine"
+                android:padding="8dp" />
+
             <ImageView
                 android:id="@+id/send"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="40dp"
-                android:src="@drawable/send"/>
+                android:elevation="5dp"
+                android:background="@drawable/white_background"
+                android:layout_weight="1"
+                android:src="@drawable/send" />
         </LinearLayout>
     </LinearLayout>
+
 </RelativeLayout>

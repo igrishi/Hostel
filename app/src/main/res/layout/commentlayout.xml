@@ -1,23 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:padding="5dp"
     android:layout_height="wrap_content">
 
     <RelativeLayout
+        android:id="@+id/relative2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#DCDCF7"
         android:elevation="5dp"
         android:padding="7dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/comment_user_image"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="4dp"
+            android:src="@drawable/maleuser" />
         <TextView
             android:id="@+id/c_r_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Username"
+            android:layout_toEndOf="@id/comment_user_image"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="4dp"
             android:textColor="#000000"
             android:textStyle="bold"
             android:textSize="17sp"/>
@@ -29,10 +39,22 @@
             android:layout_below="@id/c_r_username"
             android:layout_marginTop="7dp"
             android:layout_marginStart="12dp"
+            android:layout_toEndOf="@id/comment_user_image"
             android:layout_marginEnd="12dp"
-            android:textColor="#292828"
+            android:textColor="#252525"
             android:textSize="16sp"
             android:text="hyy!! nice pic you are good looking"/>
+
+        <View
+            android:id="@+id/thin_line3"
+            android:layout_width="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@id/comment_user_image"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/c_r_comment"
+            android:background="#AFA8A8" />
     </RelativeLayout>
+
 
 </RelativeLayout>

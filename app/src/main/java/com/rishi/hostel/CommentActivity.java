@@ -30,6 +30,8 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.rishi.hostel.Adapters.CommentsAdapter;
+import com.rishi.hostel.ModalClasses.CommentData;
+import com.rishi.hostel.ModalClasses.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -112,6 +114,7 @@ public class CommentActivity extends AppCompatActivity {
         map.put("time", FieldValue.serverTimestamp());
         map.put("comment", comment_string);
         map.put("username", User.getName());
+        map.put("imageurl",User.getImage_url());
         FirebaseFirestore firestore = FirebaseFirestore.getInstance();
         firestore.collection("posts").document(Postid)
                 .collection("comments").add(map)

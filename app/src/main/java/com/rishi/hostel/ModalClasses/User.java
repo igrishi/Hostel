@@ -1,4 +1,4 @@
-package com.rishi.hostel;
+package com.rishi.hostel.ModalClasses;
 
 public class User {
     private static String name,rollno,roomno;
@@ -25,7 +25,7 @@ public class User {
         return image_url;
     }
 
-    static void setImage_url(String image_url) {
+    public static void setImage_url(String image_url) {
         User.image_url = image_url;
     }
 
@@ -33,7 +33,7 @@ public class User {
         return rollno;
     }
 
-    static void setRollno(String rollno) {
+    public static void setRollno(String rollno) {
         User.rollno = rollno;
     }
 
@@ -41,7 +41,7 @@ public class User {
         return roomno;
     }
 
-    static void setRoomno(String roomno) {
+    public static void setRoomno(String roomno) {
         User.roomno = roomno;
     }
 
@@ -49,7 +49,7 @@ public class User {
         return branch;
     }
 
-    static void setBranch(String branch) {
+    public static void setBranch(String branch) {
         User.branch = branch;
     }
 
@@ -57,7 +57,7 @@ public class User {
         return bloodgrp;
     }
 
-    static void setBloodgrp(String bloodgrp) {
+    public static void setBloodgrp(String bloodgrp) {
         User.bloodgrp = bloodgrp;
     }
 }

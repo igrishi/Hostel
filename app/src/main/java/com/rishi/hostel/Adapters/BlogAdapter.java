@@ -28,7 +28,7 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.rishi.hostel.BlogPost;
+import com.rishi.hostel.ModalClasses.BlogPost;
 import com.rishi.hostel.CommentActivity;
 import com.rishi.hostel.R;
 
@@ -167,6 +167,7 @@ public class BlogAdapter extends RecyclerView.Adapter<BlogAdapter.ViewHolder> {
     }
 
     private void like_button(String blogpostid, String user_token, final ViewHolder holder){
+        Log.d("Likes", "like_button: "+"liked button clicked");
         final HashMap<String,Object> likes=new HashMap<>();
         likes.put("time", FieldValue.serverTimestamp());
 
@@ -197,7 +198,7 @@ public class BlogAdapter extends RecyclerView.Adapter<BlogAdapter.ViewHolder> {
     }
 
     private void like_update(String blogpostid, String user_token, final ViewHolder holder) {
-
+        Log.d("Likes", "like_button: "+"colour updated");
         FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
 
         CollectionReference collectionReference=rootRef
@@ -211,6 +212,7 @@ public class BlogAdapter extends RecyclerView.Adapter<BlogAdapter.ViewHolder> {
         docIdRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                Log.d("Likes", "onEvent: "+"there is a change in user likes");
                 if(documentSnapshot!=null){
                     if(documentSnapshot.exists()){
                         holder.likes.setImageResource(R.drawable.liked);
@@ -229,6 +231,7 @@ public class BlogAdapter extends RecyclerView.Adapter<BlogAdapter.ViewHolder> {
     }
 
     private void  like_count_update(String blogpostid, final ViewHolder holder){
+        Log.d("Likes", "like_button: "+"number updated");
         FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
 
         CollectionReference collectionReference=rootRef
@@ -239,6 +242,7 @@ public class BlogAdapter extends RecyclerView.Adapter<BlogAdapter.ViewHolder> {
         collectionReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                Log.d("Likes", "onEvent: "+"there is a change in number of likes");
                 if(queryDocumentSnapshots!=null){
                     long number=0;
                     number=queryDocumentSnapshots.size();

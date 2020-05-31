@@ -24,6 +24,9 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.rishi.hostel.Fragments.BlogFragment;
+import com.rishi.hostel.Fragments.MediaclFragment;
+import com.rishi.hostel.ModalClasses.User;
 import com.rishi.hostel.OnBoarding.Login;
 
 import java.util.Objects;
