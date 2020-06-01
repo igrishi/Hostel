@@ -19,7 +19,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".HomePage"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".OnBoarding.UserDetail"
             android:screenOrientation="portrait"

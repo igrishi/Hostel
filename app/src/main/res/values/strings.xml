@@ -11,7 +11,6 @@
     <string name="roll_no">Roll no</string>
     <string name="name">Name</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="username">Username</string>
 
@@ -35,4 +34,10 @@
         <item>AB+</item>
         <item>AB-</item>
     </string-array>
+
+    <string name="fever">Common symptoms involve: runny nose, cough, sneezing, fever, and tiredness</string>
+    <string name="headache">Suffering from headache and body pain, also feeling tired</string>
+    <string name="injuries">Got a cut on your body parts or got an injury</string>
+    <string name="brokenbone">Broken bones cause immense pain and had to be handled carefully</string>
+    <string name="mentalstress">feeling depressed and low, and need someone to talk then talk to our Psychiatry!</string>
 </resources>

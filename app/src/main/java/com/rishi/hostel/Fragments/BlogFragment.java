@@ -48,7 +48,7 @@ public class BlogFragment extends Fragment {
             }
         });
         adapter=new BlogAdapter(list,getActivity());
-        RecyclerView.LayoutManager manager=new LinearLayoutManager(getActivity());
+        LinearLayoutManager manager=new LinearLayoutManager(getActivity());
         recyclerview.setLayoutManager(manager);
         recyclerview.setAdapter(adapter);
         //getting data from firebaseFireStore
