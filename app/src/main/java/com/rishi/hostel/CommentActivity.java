@@ -43,43 +43,40 @@ import javax.annotation.Nullable;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CommentActivity extends AppCompatActivity {
-    private String Postuserid, Postdesc, Postid;
-    private TextView name, desciption;
-    private CircleImageView image, myimage;
-    private String myuserimageurl;
+    private String Postuserid;
+    private String Postid;
+    private TextView name;
+    private CircleImageView image;
     private String TAG = "CommentsActivity";
-    private RecyclerView commentlist;
     private EditText comment;
-    private ImageView send;
     private List<CommentData> data;
     private CommentsAdapter commentsAdapter;
-    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment);
-        myuserimageurl = User.getImage_url();
+        String myuserimageurl = User.getImage_url();
         data = new ArrayList<>();
         final Intent intent = getIntent();
         Postuserid = intent.getStringExtra("userid");
-        Postdesc = intent.getStringExtra("description");
+        String postdesc = intent.getStringExtra("description");
         Postid = intent.getStringExtra("postid");
         image = findViewById(R.id.comments_my_user);
         name = findViewById(R.id.c_username);
         comment = findViewById(R.id.comment_edit_text);
-        desciption = findViewById(R.id.c_description);
-        toolbar=findViewById(R.id.toolbar_comment);
-        myimage = findViewById(R.id.myimage);
-        commentlist = findViewById(R.id.comments_recycler);
+        TextView desciption = findViewById(R.id.c_description);
+        Toolbar toolbar = findViewById(R.id.toolbar_comment);
+        CircleImageView myimage = findViewById(R.id.myimage);
+        RecyclerView commentlist = findViewById(R.id.comments_recycler);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         commentsAdapter = new CommentsAdapter(data);
         commentlist.setAdapter(commentsAdapter);
-        send = findViewById(R.id.send);
+        ImageView send = findViewById(R.id.send);
         commentlist.setLayoutManager(layoutManager);
         Glide.with(CommentActivity.this).load(myuserimageurl).into(myimage);
         getdata(Postuserid);
-        desciption.setText(Postdesc);
+        desciption.setText(postdesc);
         updateAdapter();
         send.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +95,7 @@ public class CommentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseAuth auth=FirebaseAuth.getInstance();
-                String current_user=auth.getCurrentUser().getUid();
+                String current_user= Objects.requireNonNull(auth.getCurrentUser()).getUid();
                 Intent intent=new Intent(CommentActivity.this,HomePage.class);
                 intent.putExtra("user_uid",current_user);
                 startActivity(intent);
@@ -109,7 +106,7 @@ public class CommentActivity extends AppCompatActivity {
 
     private void uploadcomment(String comment_string) {
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        String usertoken = auth.getCurrentUser().getUid();
+        String usertoken = Objects.requireNonNull(auth.getCurrentUser()).getUid();
         HashMap<String, Object> map = new HashMap<>();
         map.put("time", FieldValue.serverTimestamp());
         map.put("comment", comment_string);
@@ -167,8 +164,8 @@ public class CommentActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()) {
-                            String username = task.getResult().getString("name");
-                            String profileimage = task.getResult().getString("image url");
+                            String username = Objects.requireNonNull(task.getResult()).getString("name");
+                            String profileimage = task.getResult().getString("image_url");
                             Glide.with(CommentActivity.this).load(profileimage).into(image);
                             name.setText(username);
                         } else {

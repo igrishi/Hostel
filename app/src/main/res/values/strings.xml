@@ -40,4 +40,30 @@
     <string name="injuries">Got a cut on your body parts or got an injury</string>
     <string name="brokenbone">Broken bones cause immense pain and had to be handled carefully</string>
     <string name="mentalstress">feeling depressed and low, and need someone to talk then talk to our Psychiatry!</string>
+
+    <string name="what_to_do_fever">take rest and drink plenty of water, don\'t work right now and have a good sleep</string>
+    <string name="what_to_do_depression">get enough sleep, eat healthy food, take occasionally breaks from work and do breathing exercises</string>
+    <string name="what_to_do_headache">try to avoid mobile and other gadget, wash your eyes with cold water and have a good sleep</string>
+    <string name="what_to_do_injury">don\'t touch the wound with dirty hands wash it with cold water and apply dettol and have a bandage or handiplast </string>
+    <string name="what_to_do_brokenbone">handle the broken area carefully and provide solid support to it and immediately contact a doctor</string>
+
+    <string name="m1_fever">Paracetamol (fever)</string>
+    <string name="m2_fever">Advil Capsule (fever)</string>
+    <string name="m3_fever"><![CDATA[Benylin (cold & fever)]]></string>
+
+    <string name="m1_depression">Just talk to our your loved ones you will feel happy :)</string>
+    <string name="m2_depression">or talk to a psychiatrist</string>
+    <string name="m3_depression"> </string>
+
+    <string name="m1_headache">Fioricet</string>
+    <string name="m2_headache">ibuprofen</string>
+    <string name="m3_headache">Crocin Advance (body pain)</string>
+
+    <string name="m1_injury">Dettol and bandage</string>
+    <string name="m2_injury">naproxen (pain relief)</string>
+    <string name="m3_injury"> </string>
+
+    <string name="m1_brokenbone">meet a doctor first</string>
+    <string name="m2_brokenbone">naproxen (pain relief)</string>
+    <string name="m3_brokenbone"> </string>
 </resources>

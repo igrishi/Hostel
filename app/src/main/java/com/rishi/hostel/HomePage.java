@@ -56,7 +56,7 @@ public class HomePage extends AppCompatActivity {
         View header=nav.getHeaderView(0);
         username=header.findViewById(R.id.user_nav_name);
         imageview=header.findViewById(R.id.user_nav_image);
-        Toolbar toolbar=findViewById(R.id.toolbar);
+        final Toolbar toolbar=findViewById(R.id.toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,13 +71,19 @@ public class HomePage extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id=item.getItemId();
                 if(id==R.id.blog){
+                    toolbar.setTitle("Blogs");
                     FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.normal_frame,blog);
                     fragmentTransaction.commit();
                 }else if(id==R.id.medical_help){
+                    toolbar.setTitle("Health issue");
                     FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.normal_frame,medical);
                     fragmentTransaction.commit();
+                }else if(id==R.id.notice){
+
+                }else if(id==R.id.find_people){
+
                 }
                 //returning true to show that the task is consumed and everything is ok
                 //if false then fragment may change but the selected item is not highlighted as for it task is
@@ -124,7 +130,7 @@ public class HomePage extends AppCompatActivity {
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if(task.isSuccessful()){
                     String name= Objects.requireNonNull(task.getResult()).getString("name");
-                    String image_url=task.getResult().getString("image url");
+                    String image_url=task.getResult().getString("image_url");
                     String bloodgrp=task.getResult().getString("bloodgrp");
                     String branch=task.getResult().getString("branch");
                     String rollno=task.getResult().getString("rollno");

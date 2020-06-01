@@ -122,7 +122,7 @@ public class BlogAdapter extends RecyclerView.Adapter<BlogAdapter.ViewHolder> {
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if(task.isSuccessful()){
                             String username= Objects.requireNonNull(task.getResult()).getString("name");
-                            String profileimage=task.getResult().getString("image url");
+                            String profileimage=task.getResult().getString("image_url");
                             Glide.with(activity).load(profileimage).into(holder.userimage);
                             holder.username.setText(username);
                         }else{

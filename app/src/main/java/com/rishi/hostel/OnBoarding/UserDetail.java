@@ -255,7 +255,7 @@ public class UserDetail extends AppCompatActivity {
         hashMap.put("roomno", roomno);
         hashMap.put("branch", branch);
         hashMap.put("bloodgrp", bloodgrp);
-        hashMap.put("image url", image_url);
+        hashMap.put("image_url", image_url);
         FirebaseFirestore data = FirebaseFirestore.getInstance();
         data.collection("Users").document(usertoken).set(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
