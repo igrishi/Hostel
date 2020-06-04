@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -46,24 +47,24 @@ private String TAG="PostBlog";
 private String image_url;
 private ProgressBar loading;
 private String user_id;
-private FirebaseAuth auth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        auth=FirebaseAuth.getInstance();
+        FirebaseAuth auth = FirebaseAuth.getInstance();
         user_id= Objects.requireNonNull(auth.getCurrentUser()).getUid();
         Log.d(TAG, "upload_data: user_id:--"+user_id);
         setContentView(R.layout.activity_post_blog);
         post_image=findViewById(R.id.post_blog_image);
         text=findViewById(R.id.post_description);
-        Button button=findViewById(R.id.upload_blog);
-        loading=findViewById(R.id.progress_bar);
-        button.setOnClickListener(new View.OnClickListener() {
+        LinearLayout upload = findViewById(R.id.upload_layout);
+        upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 validate(imageuri,text.getText().toString());
             }
         });
+        loading=findViewById(R.id.progress_bar);
         post_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

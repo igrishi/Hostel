@@ -66,4 +66,5 @@
     <string name="m1_brokenbone">meet a doctor first</string>
     <string name="m2_brokenbone">naproxen (pain relief)</string>
     <string name="m3_brokenbone"> </string>
+    <string name="add_description">Add description</string>
 </resources>

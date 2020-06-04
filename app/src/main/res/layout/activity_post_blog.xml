@@ -8,25 +8,27 @@
 
     <ProgressBar
         android:id="@+id/progress_bar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:indeterminate="true"
         android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_pb"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_pb" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_pb"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        app:titleTextAppearance="@style/style_toolbar"
         android:background="#fff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/back"
         app:title="Post Blog"
         app:titleMarginStart="15dp"
+        app:titleTextAppearance="@style/style_toolbar"
         app:titleTextColor="#1C4699" />
 
     <ImageView
@@ -36,38 +38,50 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="30dp"
+        android:background="@drawable/dotted_background"
         android:padding="20dp"
         android:src="@drawable/imageupload"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar_pb" />
+
     <EditText
         android:id="@+id/post_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:hint="Add description"
-        android:textSize="18dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="9dp"
         android:backgroundTint="#1C4699"
-        android:padding="9dp"
+        android:hint="@string/add_description"
+        android:inputType="textMultiLine"
         android:maxHeight="80dp"
+        android:padding="9dp"
         android:textColor="#000000"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/post_blog_image"
-        android:layout_marginStart="7dp"
-        android:layout_marginEnd="7dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/post_blog_image" />
 
-    <Button
-        android:id="@+id/upload_blog"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:text="Upload"
-        app:layout_constraintStart_toStartOf="parent"
+
+    <LinearLayout
+        android:id="@+id/upload_layout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#388E3C"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@drawable/button_backg"
-        android:textColor="#fff"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/post_description"
-        android:layout_marginTop="30dp"/>
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload Blog"
+            android:textColor="#fff"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
