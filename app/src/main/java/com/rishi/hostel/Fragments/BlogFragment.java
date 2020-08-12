@@ -20,7 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.rishi.hostel.Adapters.BlogAdapter;
-import com.rishi.hostel.ModalClasses.BlogPost;
+import com.rishi.hostel.ModelClasses.BlogPost;
 import com.rishi.hostel.PostBlog;
 import com.rishi.hostel.R;
 

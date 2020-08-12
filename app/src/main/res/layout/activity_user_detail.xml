@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8F2F2"
+    android:background="#FFFFFF"
     tools:context=".OnBoarding.UserDetail">
 
     <RelativeLayout
@@ -16,7 +16,7 @@
             android:id="@+id/user_detail_progress"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
-            android:layout_height="10dp"
+            android:layout_height="8dp"
             android:indeterminate="true"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
@@ -25,55 +25,107 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/user_icon"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="35dp"
             android:elevation="8dp"
-            android:src="@drawable/maleuser"
-            app:civ_border_color="#000000"
-            app:civ_border_width="2dp" />
+            android:src="@drawable/maleuser" />
+
+        <LinearLayout
+            android:id="@+id/linear_layout6"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/user_icon"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="13dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:fontFamily="@font/josefin_sans_bold"
+                android:text="Name"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <EditText
             android:id="@+id/user_name"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/user_icon"
+            android:layout_below="@id/linear_layout6"
             android:layout_centerHorizontal="true"
             android:backgroundTint="@color/colorAccent"
-            android:layout_marginTop="27dp"
-            android:hint="@string/name"
             android:imeOptions="actionNext"
             android:inputType="text"
             android:maxLines="1"
             android:padding="11dp"
             android:textColor="#000000" />
 
-        <EditText
-            android:id="@+id/user_rollno"
+        <LinearLayout
+            android:id="@+id/linear_layout7"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/user_name"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="9dp"
-            android:hint="@string/roll_no"
+            android:layout_marginTop="11dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:fontFamily="@font/josefin_sans_bold"
+                android:text="Roll no"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/user_rollno"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linear_layout7"
+            android:layout_centerHorizontal="true"
             android:backgroundTint="@color/colorAccent"
             android:imeOptions="actionNext"
             android:inputType="number"
             android:padding="11dp"
             android:textColor="#000000" />
 
-        <EditText
-            android:id="@+id/user_roomno"
+        <LinearLayout
+            android:id="@+id/linear_layout8"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/user_rollno"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="9dp"
-            android:hint="@string/room_no"
+            android:layout_marginTop="11dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:fontFamily="@font/josefin_sans_bold"
+                android:text="Room no"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/user_roomno"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linear_layout8"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="@color/colorAccent"
             android:imeOptions="actionDone"
             android:inputType="number"
-            android:backgroundTint="@color/colorAccent"
             android:padding="11dp"
             android:textColor="#000000" />
 
@@ -81,18 +133,20 @@
             android:id="@+id/linear_layout4"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="9dp"
-            android:orientation="horizontal"
+            android:layout_below="@id/user_roomno"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/user_roomno">
+            android:layout_marginTop="9dp"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textStyle="bold"
                 android:layout_marginStart="7dp"
+                android:fontFamily="@font/josefin_sans_bold"
+                android:text="Branch"
                 android:textColor="@color/colorAccent"
-                android:text="Branch" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <Spinner
@@ -110,18 +164,20 @@
             android:id="@+id/linear_layout5"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="9dp"
-            android:orientation="horizontal"
+            android:layout_below="@id/spinner"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/spinner">
+            android:layout_marginTop="9dp"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textStyle="bold"
                 android:layout_marginStart="7dp"
+                android:fontFamily="@font/josefin_sans_bold"
+                android:text="Blood Group"
                 android:textColor="@color/colorAccent"
-                android:text="Blood Group" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <Spinner

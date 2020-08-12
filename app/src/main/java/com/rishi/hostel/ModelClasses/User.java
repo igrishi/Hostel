@@ -1,4 +1,4 @@
-package com.rishi.hostel.ModalClasses;
+package com.rishi.hostel.ModelClasses;
 
 public class User {
     private static String name,rollno,roomno;

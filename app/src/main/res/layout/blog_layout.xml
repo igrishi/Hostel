@@ -43,9 +43,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
+                    android:fontFamily="@font/josefin_sans_bold"
                     android:text="@string/username"
                     android:textColor="#000000"
-                    android:textSize="15sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -85,6 +86,7 @@
                 android:layout_marginStart="7dp"
                 android:layout_marginTop="7dp"
                 android:layout_marginEnd="7dp"
+                android:fontFamily="@font/josefin_sans_semibold"
                 android:text="Hii!! there how are you guys!! this is my first post and i am very excited to continue on this platform"
                 android:textColor="#000000"
                 android:textSize="15sp" />

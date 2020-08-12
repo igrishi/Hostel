@@ -1,188 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".BloodNeed">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        app:titleTextAppearance="@style/style_toolbar"
-        app:title="Blood Need"
-        app:titleTextColor="#1C4699"
+        android:background="#fff"
         app:navigationIcon="@drawable/back"
-        android:background="#fff"/>
+        app:title="Blood Need"
+        app:titleTextAppearance="@style/style_toolbar"
+        app:titleTextColor="#1C4699" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/toolbar">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="20dp">
+
             <LinearLayout
                 android:id="@+id/lb1"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:padding="8dp"
                 android:layout_marginTop="8dp"
                 android:orientation="horizontal"
+                android:padding="8dp"
                 android:weightSum="2">
+
                 <TextView
                     android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:background="@color/colorAccent"
-                    android:layout_height="match_parent"
-                    android:text="A+"
-                    android:onClick="A_positive"
                     android:gravity="center"
-                    android:textSize="30sp"
-                    android:textStyle="bold"
+                    android:onClick="A_positive"
+                    android:text="A+"
                     android:textColor="#fff"
-                    android:layout_weight="1"/>
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_marginStart="8dp"
-                    android:background="#6795EE"
-                    android:text="A-"
-                    android:onClick="A_negative"
-                    android:gravity="center"
-                    android:textSize="30sp"
-                    android:textColor="#fff"
-                    android:textStyle="bold"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"/>
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:background="#6795EE"
+                    android:gravity="center"
+                    android:onClick="A_negative"
+                    android:text="A-"
+                    android:textColor="#fff"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/lb2"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:layout_marginTop="5dp"
                 android:layout_below="@id/lb1"
-                android:padding="8dp"
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal"
+                android:padding="8dp"
                 android:weightSum="2">
+
                 <TextView
                     android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:background="#4CAF50"
-                    android:text="B+"
                     android:gravity="center"
-                    android:textSize="30sp"
-                    android:textColor="#fff"
                     android:onClick="B_positive"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"/>
+                    android:text="B+"
+                    android:textColor="#fff"
+                    android:textSize="30sp" />
+
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_marginStart="8dp"
-                    android:background="#FF7700"
-                    android:text="B-"
-                    android:gravity="center"
-                    android:textSize="30sp"
-                    android:onClick="B_negative"
-                    android:textColor="#fff"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"/>
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:background="#FF7700"
+                    android:gravity="center"
+                    android:onClick="B_negative"
+                    android:text="B-"
+                    android:textColor="#fff"
+                    android:textSize="30sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/lb3"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:padding="8dp"
-                android:layout_marginTop="5dp"
                 android:layout_below="@id/lb2"
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal"
+                android:padding="8dp"
                 android:weightSum="2">
+
                 <TextView
                     android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:background="#673AB7"
-                    android:text="O+"
                     android:gravity="center"
                     android:onClick="O_positive"
-                    android:textSize="30sp"
+                    android:text="O+"
                     android:textColor="#fff"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"/>
+                    android:textSize="30sp" />
+
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_marginStart="8dp"
-                    android:background="#C8E00AC3"
-                    android:text="O-"
-                    android:gravity="center"
-                    android:textSize="30sp"
-                    android:onClick="O_negative"
-                    android:textColor="#fff"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"/>
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:background="#C8E00AC3"
+                    android:gravity="center"
+                    android:onClick="O_negative"
+                    android:text="O-"
+                    android:textColor="#fff"
+                    android:textSize="30sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/lb4"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:layout_marginTop="5dp"
                 android:layout_below="@id/lb3"
-                android:padding="8dp"
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal"
+                android:padding="8dp"
                 android:weightSum="2">
+
                 <TextView
                     android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:background="#F50057"
-                    android:text="AB+"
                     android:gravity="center"
-                    android:textSize="30sp"
-                    android:textColor="#fff"
                     android:onClick="AB_positive"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"/>
+                    android:text="AB+"
+                    android:textColor="#fff"
+                    android:textSize="30sp" />
+
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_marginStart="8dp"
-                    android:background="#388E3C"
-                    android:text="AB-"
-                    android:gravity="center"
-                    android:textSize="30sp"
-                    android:onClick="AB_negative"
-                    android:textColor="#fff"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"/>
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:background="#388E3C"
+                    android:gravity="center"
+                    android:onClick="AB_negative"
+                    android:text="AB-"
+                    android:textColor="#fff"
+                    android:textSize="30sp" />
             </LinearLayout>
-            
+
             <RelativeLayout
                 android:id="@+id/bloodbanks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/lb4"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_below="@id/lb4"
-                android:elevation="8dp"
-                android:background="@drawable/edittext_background">
+                android:background="@drawable/edittext_background"
+                android:elevation="8dp">
+
                 <ImageView
                     android:id="@+id/image"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_marginStart="8dp"
-                    android:src="@drawable/saveblood"/>
+                    android:src="@drawable/saveblood" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:gravity="center"
-                    android:layout_toEndOf="@id/image">
+                    android:layout_toEndOf="@id/image"
+                    android:gravity="center">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="Blood Banks"
                         android:textColor="@color/colorAccent"
                         android:textSize="26sp"
-                        android:text="Blood Banks"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
-              
+
             </RelativeLayout>
 
-           
+
         </RelativeLayout>
     </ScrollView>
 

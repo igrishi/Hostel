@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.rishi.hostel.ModalClasses.BloodDonorModal;
+import com.rishi.hostel.ModelClasses.BloodDonorModel;
 import com.rishi.hostel.R;
 
 import java.util.List;
@@ -18,10 +18,10 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class BloodDonorsAdapter extends RecyclerView.Adapter<BloodDonorsAdapter.ViewHolder> {
-    private List<BloodDonorModal> list;
+    private List<BloodDonorModel> list;
     private Context mContext;
 
-    public BloodDonorsAdapter(List<BloodDonorModal> list, Context context) {
+    public BloodDonorsAdapter(List<BloodDonorModel> list, Context context) {
         this.list=list;
         this.mContext=context;
     }

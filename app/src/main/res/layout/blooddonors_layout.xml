@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -12,73 +12,77 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/bd_userimage"
             android:layout_width="49dp"
-            android:layout_marginStart="5dp"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="8dp"
             android:layout_height="49dp"
-            android:src="@drawable/maleuser"/>
+            android:layout_centerVertical="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/maleuser" />
 
         <TextView
             android:id="@+id/bd_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/bd_userimage"
-            android:layout_marginTop="10dp"
             android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/bd_userimage"
             android:text="Username"
+            android:textColor="#000000"
             android:textSize="17sp"
-            android:textStyle="bold"
-            android:textColor="#000000"/>
+            android:textStyle="bold" />
 
         <LinearLayout
             android:id="@+id/bd1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/bd_userimage"
             android:layout_below="@id/bd_username"
             android:layout_marginStart="15dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_toEndOf="@id/bd_userimage"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Roll no: "
-                android:textSize="15sp"/>
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/bd_rollno"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:textStyle="bold"
-                android:text="1906058"/>
+                android:text="1906058"
+                android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/bd2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/bd_userimage"
             android:layout_below="@id/bd1"
             android:layout_marginStart="15dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_toEndOf="@id/bd_userimage"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Room no: "
-                android:textSize="15sp"/>
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/bd_roomno"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:textStyle="bold"
-                android:text="203"/>
+                android:text="203"
+                android:textStyle="bold" />
         </LinearLayout>
     </RelativeLayout>
+
     <View
         android:id="@+id/thin_line"
         android:layout_width="match_parent"

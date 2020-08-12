@@ -1,4 +1,4 @@
-package com.rishi.hostel.ModalClasses;
+package com.rishi.hostel.ModelClasses;
 
 
 import java.util.Date;

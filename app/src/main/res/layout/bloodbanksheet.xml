@@ -6,16 +6,16 @@
     <View
         android:id="@+id/view1"
         android:layout_width="50dp"
-        android:background="@drawable/greypatch"
+        android:layout_height="8dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
-        android:layout_height="10dp"/>
+        android:background="@drawable/greypatch" />
 
     <LinearLayout
         android:id="@+id/bloodbank1"
         android:layout_width="match_parent"
-        android:layout_below="@id/view1"
         android:layout_height="wrap_content"
+        android:layout_below="@id/view1"
         android:layout_marginTop="18dp"
         android:background="#fff"
         android:orientation="horizontal"
@@ -41,15 +41,15 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@id/bloodbank1"
-        android:layout_marginEnd="60dp"
         android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
         android:background="#AFA8A8" />
 
     <LinearLayout
         android:id="@+id/bloodbank2"
-        android:layout_below="@id/view2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/view2"
         android:background="#fff"
         android:orientation="horizontal"
         android:padding="10dp">
@@ -74,15 +74,15 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@id/bloodbank2"
-        android:layout_marginEnd="60dp"
         android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
         android:background="#AFA8A8" />
 
     <LinearLayout
         android:id="@+id/bloodbank3"
         android:layout_width="match_parent"
-        android:layout_below="@id/view3"
         android:layout_height="wrap_content"
+        android:layout_below="@id/view3"
         android:background="#fff"
         android:orientation="horizontal"
         android:padding="10dp">
@@ -107,16 +107,16 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@id/bloodbank3"
-        android:layout_marginEnd="60dp"
         android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
         android:background="#AFA8A8" />
 
     <LinearLayout
         android:id="@+id/bloodbank4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#fff"
         android:layout_below="@id/view4"
+        android:background="#fff"
         android:orientation="horizontal"
         android:padding="10dp">
 
@@ -140,16 +140,16 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@id/bloodbank4"
-        android:layout_marginEnd="60dp"
         android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
         android:background="#AFA8A8" />
 
     <LinearLayout
         android:id="@+id/bloodbank5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#fff"
         android:layout_below="@id/view5"
+        android:background="#fff"
         android:orientation="horizontal"
         android:padding="10dp">
 
@@ -172,16 +172,16 @@
         android:id="@+id/view6"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginEnd="60dp"
         android:layout_below="@id/bloodbank5"
         android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
         android:background="#AFA8A8" />
 
     <LinearLayout
         android:id="@+id/bloodbank6"
         android:layout_width="match_parent"
-        android:layout_below="@id/view6"
         android:layout_height="wrap_content"
+        android:layout_below="@id/view6"
         android:background="#fff"
         android:orientation="horizontal"
         android:padding="10dp">

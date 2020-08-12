@@ -16,14 +16,16 @@
         android:icon="@drawable/notice"
         android:title="Notice"
         app:showAsAction="ifRoom" />
+
     <item
-        android:id="@+id/find_people"
-        android:icon="@drawable/person"
-        android:title="Find People"
-        app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/seek_help"
+        android:id="@+id/complain"
         android:icon="@drawable/help"
-        android:title="Help"
+        android:title="Complain"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/my_profile"
+        android:icon="@drawable/person"
+        android:title="My profile"
         app:showAsAction="ifRoom" />
 </menu>

@@ -15,7 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.rishi.hostel.Adapters.BloodDonorsAdapter;
-import com.rishi.hostel.ModalClasses.BloodDonorModal;
+import com.rishi.hostel.ModelClasses.BloodDonorModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +25,7 @@ import javax.annotation.Nullable;
 public class BloodDonors extends AppCompatActivity {
 
     private RecyclerView rows;
-    private List<BloodDonorModal> list;
+    private List<BloodDonorModel> list;
     private String bloodgrp;
     private String TAG="BloodDonor";
     private BloodDonorsAdapter adapter;
@@ -54,7 +54,7 @@ public class BloodDonors extends AppCompatActivity {
                         if(blood!=null) {
                             if (blood.equals(bloodgrp)) {
                                 Log.d(TAG, "onEvent: "+"blood present");
-                                BloodDonorModal bloodDonorModal=doc.toObject(BloodDonorModal.class);
+                                BloodDonorModel bloodDonorModal=doc.toObject(BloodDonorModel.class);
                                 list.add(bloodDonorModal);
                                 adapter.notifyDataSetChanged();
                             }

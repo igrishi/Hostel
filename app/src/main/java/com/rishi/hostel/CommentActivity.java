@@ -30,8 +30,8 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.rishi.hostel.Adapters.CommentsAdapter;
-import com.rishi.hostel.ModalClasses.CommentData;
-import com.rishi.hostel.ModalClasses.User;
+import com.rishi.hostel.ModelClasses.CommentData;
+import com.rishi.hostel.ModelClasses.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;

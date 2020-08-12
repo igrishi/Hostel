@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BloodDonors">
+    tools:context=".Fragments.NoticeFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/blood_donor_recycler"
+        android:id="@+id/notice_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.rishi.hostel.ModalClasses.CommentData;
+import com.rishi.hostel.ModelClasses.CommentData;
 import com.rishi.hostel.R;
 
 import java.util.List;

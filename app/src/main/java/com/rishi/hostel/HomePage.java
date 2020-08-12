@@ -26,7 +26,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.rishi.hostel.Fragments.BlogFragment;
 import com.rishi.hostel.Fragments.MediaclFragment;
-import com.rishi.hostel.ModalClasses.User;
+import com.rishi.hostel.Fragments.NoticeFragment;
+import com.rishi.hostel.ModelClasses.User;
 import com.rishi.hostel.OnBoarding.Login;
 
 import java.util.Objects;
@@ -47,6 +48,7 @@ public class HomePage extends AppCompatActivity {
         //Instances
         final BlogFragment blog=new BlogFragment();
         final MediaclFragment medical=new MediaclFragment();
+        final NoticeFragment notice = new NoticeFragment();
         setContentView(R.layout.activity_home_page);
         drawer=findViewById(R.id.drawer);
         nav=findViewById(R.id.nav_view);
@@ -81,8 +83,13 @@ public class HomePage extends AppCompatActivity {
                     fragmentTransaction.replace(R.id.normal_frame,medical);
                     fragmentTransaction.commit();
                 }else if(id==R.id.notice){
+                    toolbar.setTitle("Notice");
+                    FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.normal_frame,notice);
+                    fragmentTransaction.commit();
+                }else if(id==R.id.complain){
 
-                }else if(id==R.id.find_people){
+                }else if(id==R.id.my_profile){
 
                 }
                 //returning true to show that the task is consumed and everything is ok
@@ -102,9 +109,6 @@ public class HomePage extends AppCompatActivity {
                     Intent intent=new Intent(HomePage.this, Login.class);
                     startActivity(intent);
                     finish();
-                }
-                else if(id==R.id.complaint){
-                    Toast.makeText(HomePage.this, "edit account clicked", Toast.LENGTH_SHORT).show();
                 }
                 else if(id==R.id.leave_aplc){
                     Toast.makeText(HomePage.this, "leave application", Toast.LENGTH_SHORT).show();

@@ -43,9 +43,10 @@
             android:layout_marginStart="9dp"
             android:layout_marginTop="18dp"
             android:layout_toEndOf="@id/comments_my_user"
+            android:fontFamily="@font/josefin_sans_bold"
             android:text="Username"
             android:textColor="#000000"
-            android:textSize="16sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/c_description"
@@ -53,9 +54,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/c_username"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="7dp"
             android:layout_marginEnd="10dp"
             android:layout_toEndOf="@id/comments_my_user"
+            android:fontFamily="@font/josefin_sans_semibold"
             android:text="Hii!! there how are you guys!! this is my first post and i am very excited to continue on this platform"
             android:textColor="#252525" />
 
@@ -115,9 +117,9 @@
                 android:id="@+id/send"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:elevation="5dp"
-                android:background="@drawable/white_background"
                 android:layout_weight="1"
+                android:background="@drawable/white_background"
+                android:elevation="5dp"
                 android:src="@drawable/send" />
         </LinearLayout>
     </LinearLayout>

@@ -28,7 +28,7 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.rishi.hostel.ModalClasses.BlogPost;
+import com.rishi.hostel.ModelClasses.BlogPost;
 import com.rishi.hostel.CommentActivity;
 import com.rishi.hostel.R;
 

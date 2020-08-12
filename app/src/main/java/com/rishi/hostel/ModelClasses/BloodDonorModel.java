@@ -1,9 +1,9 @@
-package com.rishi.hostel.ModalClasses;
+package com.rishi.hostel.ModelClasses;
 
-public class BloodDonorModal {
+public class BloodDonorModel {
     private String name,rollno,roomno,image_url,branch;
 
-    public BloodDonorModal(String name, String rollno, String roomno, String image_url, String branch) {
+    public BloodDonorModel(String name, String rollno, String roomno, String image_url, String branch) {
         this.name = name;
         this.rollno = rollno;
         this.roomno = roomno;
@@ -11,7 +11,7 @@ public class BloodDonorModal {
         this.branch = branch;
     }
 
-    public BloodDonorModal(){
+    public BloodDonorModel(){
 
     }
 

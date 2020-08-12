@@ -10,7 +10,7 @@
     </style>
 
     <style name="style_toolbar">
-        <item name="android:fontFamily">@font/amita_bold</item>
+        <item name="android:fontFamily">@font/josefin_sans_bold</item>
         <item name="android:textSize">18sp</item>
     </style>
 </resources>
