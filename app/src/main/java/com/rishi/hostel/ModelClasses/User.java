@@ -1,16 +1,25 @@
 package com.rishi.hostel.ModelClasses;
 
 public class User {
-    private static String name,rollno,roomno;
+    private static String name,rollno,roomno,userid;
     private static String branch,bloodgrp,image_url;
 
-    public User(String rollno, String roomno, String branch, String bloodgrp, String name, String image_url) {
+    public User(String rollno, String roomno, String branch, String bloodgrp, String name, String image_url,String userid) {
         User.rollno = rollno;
         User.roomno = roomno;
         User.branch = branch;
         User.bloodgrp = bloodgrp;
         User.name =name;
         User.image_url =image_url;
+        User.userid=userid;
+    }
+
+    public static String getUserid() {
+        return userid;
+    }
+
+    public static void setUserid(String userid) {
+        User.userid = userid;
     }
 
     public static String getName() {

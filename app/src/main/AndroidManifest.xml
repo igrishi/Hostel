@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Fragments.NoticeFragment"></activity>
+        <activity android:name=".Fragments.ProfileFragment"></activity>
+        <activity android:name=".Fragments.ComplainFragment" />
+        <activity android:name=".Fragments.NoticeFragment" />
         <activity android:name=".BloodBankSheet" />
         <activity android:name=".BloodDonors" />
         <activity android:name=".BloodNeed" />

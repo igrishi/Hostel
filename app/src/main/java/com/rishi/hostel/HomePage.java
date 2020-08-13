@@ -25,8 +25,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.rishi.hostel.Fragments.BlogFragment;
+import com.rishi.hostel.Fragments.ComplainFragment;
 import com.rishi.hostel.Fragments.MediaclFragment;
 import com.rishi.hostel.Fragments.NoticeFragment;
+import com.rishi.hostel.Fragments.ProfileFragment;
 import com.rishi.hostel.ModelClasses.User;
 import com.rishi.hostel.OnBoarding.Login;
 
@@ -49,6 +51,9 @@ public class HomePage extends AppCompatActivity {
         final BlogFragment blog=new BlogFragment();
         final MediaclFragment medical=new MediaclFragment();
         final NoticeFragment notice = new NoticeFragment();
+        final ComplainFragment complain = new ComplainFragment();
+        final ProfileFragment profile = new ProfileFragment();
+
         setContentView(R.layout.activity_home_page);
         drawer=findViewById(R.id.drawer);
         nav=findViewById(R.id.nav_view);
@@ -88,9 +93,15 @@ public class HomePage extends AppCompatActivity {
                     fragmentTransaction.replace(R.id.normal_frame,notice);
                     fragmentTransaction.commit();
                 }else if(id==R.id.complain){
-
+                    toolbar.setTitle("Complain");
+                    FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.normal_frame,complain);
+                    fragmentTransaction.commit();
                 }else if(id==R.id.my_profile){
-
+                    toolbar.setTitle("Profile");
+                    FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.normal_frame,profile);
+                    fragmentTransaction.commit();
                 }
                 //returning true to show that the task is consumed and everything is ok
                 //if false then fragment may change but the selected item is not highlighted as for it task is
@@ -140,7 +151,7 @@ public class HomePage extends AppCompatActivity {
                     String rollno=task.getResult().getString("rollno");
                     String roomno=task.getResult().getString("roomno");
 
-                    userdatasetup(name,image_url,bloodgrp,branch,rollno,roomno);
+                    userdatasetup(name,image_url,bloodgrp,branch,rollno,roomno,usertoken);
 
                     Log.d(TAG, "onComplete: ");
                     username.setText(name);
@@ -159,13 +170,14 @@ public class HomePage extends AppCompatActivity {
         });
     }
 
-    private void userdatasetup(String name, String image_url, String bloodgrp, String branch, String rollno, String roomno) {
+    private void userdatasetup(String name, String image_url, String bloodgrp, String branch, String rollno, String roomno,String usertoken) {
         User.setName(name);
         User.setImage_url(image_url);
         User.setBloodgrp(bloodgrp);
         User.setBranch(branch);
         User.setRollno(rollno);
         User.setRoomno(roomno);
+        User.setUserid(usertoken);
     }
 
 

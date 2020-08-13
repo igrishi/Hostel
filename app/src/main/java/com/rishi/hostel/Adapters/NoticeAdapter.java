@@ -32,8 +32,8 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String head = notices.get(position).getHeading();
-        String desc= notices.get(position).getDesc();
+        final String head = notices.get(position).getHeading();
+        final String desc= notices.get(position).getDesc();
         boolean college = notices.get(position).getCollege();
         holder.head.setText(head);
         if(college){
@@ -44,6 +44,13 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.ViewHolder
             @Override
             public void onClick(View v) {
                 Dialog dialog =new Dialog(context);
+                dialog.setContentView(R.layout.notice_dialog);
+                TextView d_head = dialog.findViewById(R.id.dn_head);
+                TextView d_desc = dialog.findViewById(R.id.dn_desc);
+                d_head.setText(head);
+                d_desc.setText(desc);
+                dialog.setCancelable(true);
+                dialog.show();
             }
         });
     }
